@@ -35,7 +35,6 @@ minecraft {
 
 
 dependencies {
-	compile name: 'Baubles-1.7.10-1.0.1.10-dev'
 }
 
 processResources {
@@ -70,4 +69,11 @@ task sourcesJar(type: Jar) {
 artifacts {
 	archives devJar
 	archives sourcesJar
+}
+
+jar {
+	manifest {
+		attributes 'FMLCorePlugin': 'net.tclproject.mysteriumlib.asm.fixes.MysteriumPatchesFixLoaderTE'
+		attributes 'FMLCorePluginContainsFMLMod': 'true'
+	}
 }
