@@ -39,11 +39,12 @@ public class MysteriumPatchesFixesTE {
 		try {
 			Map<World, Cache<Long, Chunk>> dormantChunkCache = null;
 			try {
-				dormantChunkCache = (Map<World, Cache<Long, Chunk>>) dormantChunkCacheGet.invokeExact((ForgeChunkManager) fcm);
+				dormantChunkCache = (Map<World, Cache<Long, Chunk>>) dormantChunkCacheGet.invokeExact();
 			} catch (Throwable e) {
 				TEResetFix.logger.error("Cannot invoke dormantChunkCache! The mod will not work properly and you should report this as a bug.", e);
 			}
 			Cache<Long, Chunk> cache = dormantChunkCache.get(world);
+			if (cache == null) return;
 			cache.invalidate(coords);
 		} catch (Exception e) {
 			TEResetFix.logger.error("Something went wrong. The mod will not work properly and you should report this as a bug.", e);
